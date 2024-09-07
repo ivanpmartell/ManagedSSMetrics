@@ -2,7 +2,7 @@
   "profiles": {
     "SecondaryStructure": {
       "commandName": "Project",
-      "commandLineArgs": "-m Accuracy -r D:\\research\\too_long\\Cluster_890\\spot1d_single\\1haq_A.sspfa -p D:\\research\\too_long\\Cluster_890\\sspro8\\1haq_A.sspfa"
+      "commandLineArgs": "-m Sov99 -r D:\\research\\too_long\\Cluster_890\\spot1d_single\\1haq_A.sspfa -p D:\\research\\too_long\\Cluster_890\\sspro8\\1haq_A.sspfa"
     }
   }
 }

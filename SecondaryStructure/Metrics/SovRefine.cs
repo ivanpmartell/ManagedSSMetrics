@@ -14,7 +14,20 @@ namespace SecondaryStructure.Metrics
             }
             get { return (double)(_lambda != null ? _lambda : 1); }
         }
-        public SovRefine(string refPath, string predPath) : base(refPath, predPath) { }
+
+        private double? _deltaAll;
+        internal double CalculatedDeltaAll {
+            set
+            {
+                if (_deltaAll == null)
+                    _deltaAll = value;
+            }
+            get { return (double)(_deltaAll != null ? _deltaAll : 0); }
+        }
+        public SovRefine(string refPath, string predPath) : base(refPath, predPath)
+        {
+            CalculatedDeltaAll = DeltaAll();
+        }
 
         public override double ComputeOneClass(char secondaryStructure)
         {
@@ -35,7 +48,7 @@ namespace SecondaryStructure.Metrics
 
         internal override double Delta(char secondaryStructure, OverlapRegion overlappingRegion)
         {
-            var deltaValue = DeltaAll() * (overlappingRegion.refRegion.Length / (double)refSequence.Length) * (MinOv(secondaryStructure, overlappingRegion) / (double)MaxOv(secondaryStructure, overlappingRegion));
+            var deltaValue = CalculatedDeltaAll * (overlappingRegion.refRegion.Length / (double)refSequence.Length) * (MinOv(secondaryStructure, overlappingRegion) / (double)MaxOv(secondaryStructure, overlappingRegion));
             int threshold = MaxOv(secondaryStructure, overlappingRegion) - MinOv(secondaryStructure, overlappingRegion);
             if (deltaValue > threshold) { 
                 return threshold;
